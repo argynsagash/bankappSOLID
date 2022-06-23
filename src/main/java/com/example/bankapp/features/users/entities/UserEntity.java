@@ -5,9 +5,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "app_user")
 @Data
-@Table(name = "userapp")
 public class UserEntity {
 
     @Id
@@ -18,6 +17,6 @@ public class UserEntity {
     @Column
     private String password;
     @ManyToOne
-    @JoinColumn(name = "roletableid")
+    @JoinColumn(name = "role_id")
     private RoleEntity roleEntity;
 }

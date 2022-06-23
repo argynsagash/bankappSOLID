@@ -1,0 +1,40 @@
+-- CREATE TABLE account
+-- (
+--     id               VARCHAR(255) NOT NULL,
+--     account_type     INT,
+--     balance          DOUBLE,
+--     withdraw_allowed BOOLEAN,
+--     CONSTRAINT pk_account PRIMARY KEY (id)
+-- );
+--
+-- CREATE TABLE app_user
+-- (
+--     id       BIGINT AUTO_INCREMENT NOT NULL,
+--     login    VARCHAR(255),
+--     password VARCHAR(255),
+--     role_id  BIGINT,
+--     CONSTRAINT pk_app_user PRIMARY KEY (id)
+-- );
+--
+-- CREATE TABLE role
+-- (
+--     id   BIGINT AUTO_INCREMENT NOT NULL,
+--     name VARCHAR(255),
+--     CONSTRAINT pk_role PRIMARY KEY (id)
+-- );
+-- INSERT INTO Role(name) values ('ROLE_ADMIN');
+-- INSERT INTO Role(name) values ('ROLE_USER');
+--
+-- CREATE TABLE transaction
+-- (
+--     id               BIGINT NOT NULL,
+--     transaction_info VARCHAR(255),
+--     account_id       VARCHAR(255),
+--     CONSTRAINT pk_transaction PRIMARY KEY (id)
+-- );
+--
+-- ALTER TABLE app_user
+--     ADD CONSTRAINT FK_APP_USER_ON_ROLE FOREIGN KEY (role_id) REFERENCES role (id);
+--
+-- ALTER TABLE transaction
+--     ADD CONSTRAINT FK_TRANSACTION_ON_ACCOUNT FOREIGN KEY (account_id) REFERENCES account (id);

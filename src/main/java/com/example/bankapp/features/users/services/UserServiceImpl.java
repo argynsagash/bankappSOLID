@@ -4,7 +4,6 @@ import com.example.bankapp.features.roles.entities.RoleEntity;
 import com.example.bankapp.features.roles.repositories.RoleRepository;
 import com.example.bankapp.features.users.entities.UserEntity;
 import com.example.bankapp.features.users.repositories.UserRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,7 +24,6 @@ public class UserServiceImpl implements UserService {
         userEntity.setRoleEntity(roleEntity);
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         return userRepository.save(userEntity);
-
     }
 
     @Override

@@ -39,16 +39,20 @@ public class JwtFilter extends GenericFilterBean {
             CustomUserDetails customUserDetails = customUserDetailsService.loadUserByUsername(userLogin);
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(customUserDetails, null, customUserDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(auth);
-        } else {
-            System.out.println("error");
         }
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
 
     private String getTokenFromRequest(HttpServletRequest request) {
-        
-
+//        System.out.println("-----------------------------------------------------------------------------------------");
+//        Enumeration<?> e = request.getHeaderNames();
+//        String param;
+//        while (e.hasMoreElements()) {
+//            param = e.nextElement().toString();
+//            System.out.println(param);
+//        }
+//        System.out.println("-----------------------------------------------------------------------------------------");
         String bearer = request.getHeader(AUTHORIZATION);
         if (hasText(bearer) && bearer.startsWith("Bearer ")) {
             return bearer.substring(7);

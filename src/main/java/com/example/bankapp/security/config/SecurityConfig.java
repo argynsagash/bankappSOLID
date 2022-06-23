@@ -9,8 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -20,22 +19,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtFilter jwtFilter;
 
+//    @Bean
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//       return
         http
-                .authorizeRequests()
-                .and()
                 .httpBasic().disable()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html","/users/register/**","/users/auth/**").hasRole("USER")
-                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html","/users/register/**","/users/auth/**").hasRole("ADMIN")
-                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/users/register/**", "/users/auth/**").permitAll()
-                .anyRequest().authenticated() // любой запрос требует авторизации
+                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/users/register/**", "/users/auth/**").hasRole("USER")
+                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/users/register/**", "/users/auth/**").hasRole("ADMIN")
+                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/users/register/**", "/users/auth/**", "/h2-console/**").permitAll()
+//                .anyRequest().authenticated() // любой запрос требует авторизации
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+//                .build();
     }
 
 //    @Bean
@@ -45,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     public void configure(WebSecurity web) {
+
         web.ignoring().antMatchers("/h2-console/**");
     }
 }
