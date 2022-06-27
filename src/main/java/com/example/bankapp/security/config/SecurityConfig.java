@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/users/register/**", "/users/auth/**").hasRole("USER")
                 .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/users/register/**", "/users/auth/**").hasRole("ADMIN")
                 .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/users/register/**", "/users/auth/**", "/h2-console/**").permitAll()
-//                .anyRequest().authenticated() // любой запрос требует авторизации
+                .anyRequest().authenticated() // любой запрос требует авторизации
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 //                .build();
