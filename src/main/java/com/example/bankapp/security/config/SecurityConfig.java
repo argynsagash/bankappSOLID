@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html/**", "/users/register/**", "/users/auth/**", "/h2-console/**").permitAll()
-                .antMatchers("/accounts/**","/users/**").hasRole("USER")
+                .antMatchers("/accounts/**","/users/**","/transactions/**").hasRole("USER")
 //                .antMatchers(HttpMethod.GET).hasRole("USER")
                 .antMatchers("/**").hasRole("ADMIN")
                 .anyRequest().authenticated() // любой запрос требует авторизации

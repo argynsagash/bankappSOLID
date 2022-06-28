@@ -14,7 +14,6 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionEntity> getByAccountID(String accountID) {
-
         return transactionRepository.findAllByAccountEntity_Id(accountID);
     }
 }
