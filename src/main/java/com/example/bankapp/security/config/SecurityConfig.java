@@ -4,6 +4,7 @@ import com.example.bankapp.security.jwt.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,9 +30,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/users/register/**", "/users/auth/**").hasRole("USER")
-                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/users/register/**", "/users/auth/**").hasRole("ADMIN")
-                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/users/register/**", "/users/auth/**", "/h2-console/**").permitAll()
+                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html/**", "/users/register/**", "/users/auth/**", "/h2-console/**").permitAll()
+                .antMatchers("/accounts/**","/users/**").hasRole("USER")
+//                .antMatchers(HttpMethod.GET).hasRole("USER")
+                .antMatchers("/**").hasRole("ADMIN")
                 .anyRequest().authenticated() // любой запрос требует авторизации
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

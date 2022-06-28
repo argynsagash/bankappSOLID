@@ -6,11 +6,13 @@ import com.example.bankapp.features.users.models.AuthResponse;
 import com.example.bankapp.features.users.models.RegistrationRequest;
 import com.example.bankapp.features.users.services.UserServiceImpl;
 import com.example.bankapp.security.jwt.JwtProvider;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
+@SecurityRequirement(name = "basicauth")
 public class UserController {
     @Autowired
     private UserServiceImpl userServiceimpl;

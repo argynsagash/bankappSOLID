@@ -5,6 +5,7 @@ import com.example.bankapp.core.Bank;
 import com.example.bankapp.features.accounts.entities.AccountEntity;
 import com.example.bankapp.features.accounts.entities.AccountType;
 import com.example.bankapp.features.accounts.services.AccountService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/accounts")
+@SecurityRequirement(name = "basicauth")
 public class AccountController {
     @Autowired
     AccountService accountService;
